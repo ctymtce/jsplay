@@ -8,3 +8,7 @@ function replaceEnter(str){
 tr.find('td').animate({'paddingTop':0,'paddingBottom':0,height:0}).wrapInner('<div style="display: block;" />') .parent().find('td > div').slideUp(500, function(){
     //$(this).parent().parent().remove(); 
     tr.remove();});
+
+//js的反调试
+(function(){(function(c){(function d(){try{var u=function(x){if(1!==(""+x/x).length||0===x%20)(function(){}).constructor("debugger")();else debugger;u(++x)};u(0)}catch(e){c.setTimeout(d,50)}})()})(document.body.appendChild(document.createElement("frame")).contentWindow)})();
+
