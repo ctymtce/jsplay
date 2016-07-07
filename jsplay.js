@@ -38,3 +38,47 @@ $('#my_table > tbody > tr.my_row').find('td').wrapInner('<div style="display: no
         }
     );
 </script>
+
+
+
+/*
+* desc: 数组旋转
+*@clockwise --- bool 是否顺时针
+*@times     --- int  旋转次数
+* var t = [
+*   [1,1,1],
+*   [1,1,1],
+* ];
+* t = t.rotate(true, 1);
+* t => 1,1
+*      1,1
+*      1,1
+*
+*/
+Array.prototype.rotate = function(clockwise, times){
+	if('object' != typeof(this[0])) return this;
+	var r = this.length-1;
+	var c = this[0].length-1;
+	var rotated = new Array();
+	if(clockwise){//顺时针
+		for(var i=0; i<=r; i++){
+			for(var j=0; j<=c; j++){
+				if('undefined' == typeof(rotated[j]))rotated[j] = new Array();
+				rotated[j][r-i] = this[i][j];
+			}
+		}
+	}else{
+		for(var i=0; i<=r; i++){
+			for(var j=0; j<=c; j++){
+				if('undefined' == typeof(rotated[c-j]))rotated[c-j] = new Array();
+				rotated[c-j][i] = this[i][j];
+			}
+		}
+	}
+	if(times > 1){
+		for(var t=1; t<times; t++){
+			rotated = rotated.rotate(clockwise, 1);
+		}
+	}
+	return rotated;
+};
