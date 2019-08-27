@@ -112,6 +112,5 @@ function appendCss(cssText){
       style.styleSheet.cssText = cssText;
   }
   document.getElementsByTagName("head")[0].appendChild(style);
-  win.layer_css_text_loaded = true;
 }
 //appendCss('a{color:red}');
