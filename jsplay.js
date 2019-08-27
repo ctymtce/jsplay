@@ -82,3 +82,36 @@ Array.prototype.rotate = function(clockwise, times){
 	}
 	return rotated;
 };
+
+function appendHtml(html, root){
+    root = root || document.querySelectorAll('body')[0];
+    var node = document.createElement("div"),
+        fragment = document.createDocumentFragment(),
+        childs = null,
+        i = 0;
+    node.innerHTML = html;
+    childs = node.childNodes;
+    for( ; i<childs.length; i++){
+        fragment.appendChild(childs[i]);
+    }
+    root.appendChild(fragment);
+    childs = null;
+    fragment = null;
+    node = null;
+}
+//eg: appendHtml("<div><a>中华人民共和国</a></div>");
+
+function appendCss(cssText){
+  var style = document.createElement("style");
+  style.type = "text/css";
+  try{
+      // firefox、safari、chrome和Opera
+      style.appendChild(document.createTextNode(cssText));
+  }catch(ex) {
+      // IE早期的浏览器 ,需要使用style元素的stylesheet属性的cssText属性
+      style.styleSheet.cssText = cssText;
+  }
+  document.getElementsByTagName("head")[0].appendChild(style);
+  win.layer_css_text_loaded = true;
+}
+//appendCss('a{color:red}');
